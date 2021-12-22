@@ -313,3 +313,62 @@ jobs:
         if: ${{ steps.filter-images.outputs.kube-webhook-certgen == 'true' }}
         run: |
           cd images/kube-webhook-certgen && make test test-e2e
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ci
+        image: rancher/dapper:v0.5.3
+        commands:
+        - dapper ci
+        environment:
+          GIT_IN_DAPPER: true
+          DOCKER_PASS:
+            from_secret: docker_password
+          DOCKER_USER:
+            from_secret: docker_username
+        volumes:
+        - name: docker
+          path: /var/run/docker.sock
+        when:
+          event:
+          - tag
+        instance:
+          - drone-publish.rancher.io
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: validate
+        image: rancher/dapper:v0.5.3
+        commands:
+        - dapper validate
+        environment:
+          GIT_IN_DAPPER: true
+        volumes:
+        - name: docker
+          path: /var/run/docker.sock
+        when:
+          event:
+          - push
+          - pull_request
+          instance:
+          - drone-pr.rancher.io
+
+  build-ingress-nginx:
+    run-on: ubuntu-latest
+    steps:
+      - name: build
+        image: rancher/dapper:v0.5.3
+        commands:
+        - dapper build
+        environment:
+          GIT_IN_DAPPER: true
+        volumes:
+        - name: docker
+          path: /var/run/docker.sock
+        when:
+          event:
+          - push
+          - pull_request
+          instance:
+          - drone-pr.rancher.io
