@@ -314,7 +314,7 @@ jobs:
         run: |
           cd images/kube-webhook-certgen && make test test-e2e
 
-  drone-build: 
+  drone-validate: 
     runs-on: ubuntu-latest
     container:
       image: rancher/dapper:v0.5.3
@@ -326,4 +326,4 @@ jobs:
         - /var/run/docker.sock:/var/run/docker.sock
     steps:
       - run: |
-          dapper build 
+          dapper validate
