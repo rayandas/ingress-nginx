@@ -322,6 +322,7 @@ jobs:
         GIT_IN_DAPPER: true
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
-    steps:
-      - run: |
-          dapper validate
+      steps:
+        - name: validate
+          run: |
+            dapper validate
