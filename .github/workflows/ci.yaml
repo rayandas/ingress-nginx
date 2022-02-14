@@ -314,7 +314,7 @@ jobs:
         run: |
           cd images/kube-webhook-certgen && make test test-e2e
 
-  drone-validate: 
+  rancher-validate: 
     runs-on: ubuntu-latest
     container:
       image: rancher/dapper:v0.5.3
@@ -323,7 +323,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: validate
         run: |
           dapper validate
+
+  rancher-build:
+    runs-on: ubuntu-latest
+    container:
+      image: rancher/dapper:v0.5.3
+      env:
+        GIT_IN_DAPPER: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: build
+        run: |
+          dapper build
