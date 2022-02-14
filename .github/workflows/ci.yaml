@@ -323,4 +323,4 @@ jobs:
     steps:
       - name: validate
         run: |
-          dapper validate -f Dockerfile.dapper
+          dapper validate
