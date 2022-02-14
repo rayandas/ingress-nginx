@@ -322,7 +322,7 @@ jobs:
         GIT_IN_DAPPER: true
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
-        - cp ./Dockerfile.dapper:/go/src/k8s.io/ingress-nginx/
+        - cp Dockerfile.dapper:/go/src/k8s.io/ingress-nginx/
     steps:
       - name: validate
         run: |
