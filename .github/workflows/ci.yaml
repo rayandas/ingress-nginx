@@ -320,9 +320,6 @@ jobs:
       image: rancher/dapper:v0.5.3
       env:
         GIT_IN_DAPPER: true
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - .:/go/src/k8s.io/ingress-nginx/
     steps:
       - name: validate
         run: |
