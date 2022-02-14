@@ -320,8 +320,6 @@ jobs:
       image: rancher/dapper:v0.5.3
       env:
         GIT_IN_DAPPER: true
-        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
     steps:
