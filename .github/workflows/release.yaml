@@ -16,8 +16,12 @@ jobs:
         DOCKER_USER: ${{ secrets.docker_username }}
         DOCKER_PASS: ${{ secrets.docker_password }}
     steps:
+      - name: Install git
+        run: |
+          apk add git
+
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2      
 
       - name: tag
         run: |
