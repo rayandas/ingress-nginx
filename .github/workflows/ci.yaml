@@ -12,7 +12,6 @@ jobs:
 
   
   rancher-build:
-    needs: rancher-validate
     runs-on: ubuntu-latest
     env:
       PLATFORMS: linux/amd64
