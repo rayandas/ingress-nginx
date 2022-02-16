@@ -7,7 +7,7 @@ on:
 
   push:
     branches:
-      - main
+      - test-nginx-1
 
 jobs:
 
