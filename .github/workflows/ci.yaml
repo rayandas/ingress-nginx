@@ -12,10 +12,13 @@ jobs:
 
   
   rancher-build:
-    runs-on: rancher/dapper:v0.5.3
+    runs-on: ubuntu-latest
     env:
       PLATFORMS: linux/amd64
-      GIT_IN_DAPPER: true
+    container:
+      image: rancher/dapper:v0.5.3
+      env:
+        GIT_IN_DAPPER: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
