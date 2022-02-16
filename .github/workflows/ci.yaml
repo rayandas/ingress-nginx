@@ -15,7 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PLATFORMS: linux/amd64
+    container:
+      image: rancher/dapper:v0.5.3
+      env:
+        GIT_IN_DAPPER: true
     steps:
+      - name: Add git
+        run: |
+          apk add git
+          
       - name: Checkout
         uses: actions/checkout@v2
 
